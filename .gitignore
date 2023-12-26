@@ -1,2 +1,2 @@
 venv
-website/website/credentials_local.py
+.env

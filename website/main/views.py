@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from .forms import RegisterForm
 from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.views import PasswordResetView, PasswordResetCompleteView
+import os
 
 
 def home(request):
@@ -17,3 +19,8 @@ def sign_up(request):
     else:
         form = RegisterForm()
     return render(request, 'registration/sign_up.html', {'form': form})
+
+
+class MyPasswordResetView(PasswordResetView):
+    from_email = str(os.getenv('EMAIL_USER'))
+
