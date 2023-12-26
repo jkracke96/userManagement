@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'main.apps.MainConfig',
     'crispy_forms',
     'crispy_bootstrap5',
-    'password_reset'
+    'password_reset',
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap5'
@@ -131,3 +131,23 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = '/home'
 LOGOUT_REDIRECT_URL = '/login'
+
+# SMTP Config
+"""EMAIL_BACKEND = 'django_imap_backend.ImapBackend'
+EMAIL_IMAP_SECRETS = [
+    {
+        'HOST': 'imap.web.de',
+        'PORT': 465,  # default 143 and for SSL 993
+        'USER': str(os.getenv('EMAIL_USER')),
+        'PASSWORD': str(os.getenv('EMAIL_PW')),
+        #'MAILBOX': 'my_project',  # Created if not exists
+        'SSL': True  # Default
+    }
+]
+"""
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.mailersend.net'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = str(os.getenv('EMAIL_USER'))
+EMAIL_HOST_PASSWORD = str(os.getenv('EMAIL_PW'))

@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import RegisterForm
+from .forms import RegisterForm, CustomPasswordResetForm
 from django.contrib.auth import login, logout, authenticate
 
 
@@ -17,3 +17,14 @@ def sign_up(request):
     else:
         form = RegisterForm()
     return render(request, 'registration/sign_up.html', {'form': form})
+
+
+def reset_password(request):
+    if request.method == 'POST':
+        form = CustomPasswordResetForm(request.POST)
+        if form.is_valid():
+            print(form)
+            return redirect('/login')
+    else:
+        form = CustomPasswordResetForm()
+    return render(request, 'registration/reset_pw.html', {'form': form})
