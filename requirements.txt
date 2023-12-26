@@ -4,3 +4,4 @@ psycopg==3.1.16
 psycopg2==2.9.9
 psycopg_binary==3.1.16
 psycopg_c==3.1.16
+django-password-reset==2.0
