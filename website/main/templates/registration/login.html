@@ -4,6 +4,7 @@
 <form method="post">
     {% csrf_token %}{{form|crispy}}
     <p>Don't have an account? <a href="/sign-up">Sign up</a></p>
+    <p>Forgot you password? <a href="/reset_password">Reset here</a></p>
     <button type="submit" class="btn btn-success">Login</button>
 </form>
 {% endblock %}
