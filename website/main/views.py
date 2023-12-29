@@ -23,4 +23,5 @@ def sign_up(request):
 
 class MyPasswordResetView(PasswordResetView):
     from_email = str(os.getenv('EMAIL_USER'))
+    #success_url = 'password_reset_done'
 
