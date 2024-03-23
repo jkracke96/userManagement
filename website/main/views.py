@@ -5,6 +5,9 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.views import PasswordResetView, PasswordResetCompleteView
 from django.contrib.auth.decorators import login_required
 import os
+import yfinance as yf
+from django.core.mail import send_mail
+from django.http import HttpResponse
 
 
 @login_required(login_url="/login")
@@ -48,4 +51,20 @@ def sign_up(request):
 
 class MyPasswordResetView(PasswordResetView):
     from_email = str(os.getenv('EMAIL_USER'))
+
+
+def send_email(request, ticker, friendly_name):
+    data = yf.Ticker(ticker)
+    data = data.get_fast_info().get("twoHundredDayAverage")
+    mean_200 = data * 0.5
+    print(mean_200, data)
+
+    send_mail(
+        subject=f"200 Day Average for Ticker {ticker} - {friendly_name}",
+        message=f"The 200 Day Average for {ticker} - {friendly_name} is plain: {data}, weighted: {mean_200}",
+        from_email=str(os.getenv('EMAIL_USER')),
+        recipient_list=["jkracke96@gmail.com", "tobias.kracke@gmx.net"]
+    )
+
+    return HttpResponse(f"Email has been sent for ticker {ticker}, {friendly_name}")
 

@@ -23,5 +23,11 @@
       "src": "/(.*)",
       "dest": "website/wsgi.py"
     }
-  ]
+  ],
+  "crons": [
+        {
+            "path": "/send_email/3USL.L/S&P-500-3x",
+            "schedule": "0 4 * * *"
+        }
+    ]
 }

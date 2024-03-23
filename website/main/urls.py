@@ -10,5 +10,6 @@ urlpatterns = [
         views.MyPasswordResetView.as_view(template_name='registration/reset_pw.html'),
         name='reset_password'
     ),
-    path('create-post', views.create_post, name="create_post")
+    path('create-post', views.create_post, name="create_post"),
+    path('send_email/<str:ticker>/<str:friendly_name>', views.send_email, name="send_email")
 ]
