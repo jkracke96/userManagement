@@ -55,8 +55,8 @@ class MyPasswordResetView(PasswordResetView):
 
 def send_email(request, ticker, friendly_name):
     data = yf.Ticker(ticker)
-    data = data.get_fast_info().get("twoHundredDayAverage")
-    mean_200 = data * 0.5
+    data = round(data.get_fast_info().get("twoHundredDayAverage"), 2)
+    mean_200 = round(data * 0.5, 2)
     print(mean_200, data)
 
     send_mail(
